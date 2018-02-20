@@ -1,6 +1,7 @@
 #include "BitArray.h"
 
 #include <cassert>
+#include <math.h>   /* ceil */
 
 BitArray::Bit::Bit (int i, char *data)
   : i(i), data(data) {}
@@ -22,7 +23,8 @@ BitArray::Bit BitArray::Bit::operator = (bool val)
 }
 
 BitArray::BitArray (int num_bits) : len_ (num_bits) {
-  this->array = new char [num_bits]();
+  unsigned long num_bytes = (unsigned long)(ceil(num_bits / 8.0f) + 1);
+  this->array = new char [num_bytes]();
 }
 
 BitArray::~BitArray ()
